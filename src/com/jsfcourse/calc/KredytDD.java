@@ -1,0 +1,116 @@
+package com.jsfcourse.calc;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import static java.lang.Math.*;
+
+
+@Named
+@RequestScoped
+//@SessionScoped
+public class KredytDD {
+	private String x; //cala kwota
+	private String y; //ilosc rat
+	private String r; //oprocentowanie
+	private String m; //ilosc rat w okresie
+	private String q;
+	private Double result;
+	
+	@Inject
+	FacesContext ctx;
+	
+	public String getR() {
+		return r;
+	}
+
+	public void setR(String r) {
+		this.r = r;
+	}
+
+	public String getM() {
+		return m;
+	}
+
+	public void setM(String m) {
+		this.m = m;
+	}
+
+	public String getQ() {
+		return q;
+	}
+
+	public void setQ(String q) {
+		this.q = q;
+	}
+
+	
+
+	public String getX() {
+		return x;
+	}
+
+	public void setX(String x) {
+		this.x = x;
+	}
+
+	public String getY() {
+		return y;
+	}
+
+	public void setY(String y) {
+		this.y = y;
+	}
+
+	public Double getResult() {
+		return result;
+	}
+
+	public void setResult(Double result) {
+		this.result = result;
+	}
+
+	public boolean doTheMath() {
+		try {
+			double x = Double.parseDouble(this.x);
+			double y = Double.parseDouble(this.y);
+			double r = Double.parseDouble(this.r);
+			double m = Double.parseDouble(this.m);
+			double q = Double.parseDouble(this.q);
+			m = 12;
+			q = 1 + (r/m);
+			
+			result = (x * Math.pow(q,y))*((q-1)/ (Math.pow(q,y)-1));
+
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
+			return true;
+		} catch (Exception e) {
+			ctx.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błąd podczas przetwarzania parametrów", null));
+			return false;
+		}
+	}
+
+	// Go to "showresult" if ok
+	public String calc() {
+		if (doTheMath()) {
+			return "showresult";
+		}
+		return null;
+	}
+
+	// Put result in messages on AJAX call
+	public String calc_AJAX() {
+		if (doTheMath()) {
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Wynik: " + result, null));
+		}
+		return null;
+	}
+
+	public String info() {
+		return "info";
+	}
+}
