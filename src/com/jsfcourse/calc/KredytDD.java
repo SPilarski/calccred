@@ -16,8 +16,8 @@ public class KredytDD {
 	private String x; //cala kwota
 	private String y; //ilosc rat
 	private String r; //oprocentowanie
-	private String m; //ilosc rat w okresie
-	private String q;
+	private Integer m; //ilosc rat w okresie
+	private Double q;
 	private Double result;
 	
 	@Inject
@@ -31,21 +31,7 @@ public class KredytDD {
 		this.r = r;
 	}
 
-	public String getM() {
-		return m;
-	}
-
-	public void setM(String m) {
-		this.m = m;
-	}
-
-	public String getQ() {
-		return q;
-	}
-
-	public void setQ(String q) {
-		this.q = q;
-	}
+	
 
 	
 
@@ -78,12 +64,11 @@ public class KredytDD {
 			double x = Double.parseDouble(this.x);
 			double y = Double.parseDouble(this.y);
 			double r = Double.parseDouble(this.r);
-			double m = Double.parseDouble(this.m);
-			double q = Double.parseDouble(this.q);
+			
 			m = 12;
 			q = 1 + (r/m);
 			
-			result = (x * Math.pow(q,y))*((q-1)/ (Math.pow(q,y)-1));
+			result = ((x * Math.pow(q,y))*((q-1)) / (Math.pow(q,y)-1));
 
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
 			return true;
