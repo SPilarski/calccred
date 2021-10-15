@@ -3,32 +3,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	>
+	<link rel="stylesheet" type="text/css" href="primeflex.min.css"/>
+	
+	
 <h:head>
 	<title>KALKULATOR KREDYTOWY</title>
 </h:head>
 <h:body>
+<p:panel header="KALKULATOR RATY KREDYTU">
 
-	<h1>KALKULATOR RATY KREDYTU</h1>
 
 	<h:form id="bla">
-  		KWOTA KREDYTU: <h:inputText value="#{kredytDD.x}" />
-		<br />
-  		ILOŚĆ RAT: <h:inputText value="#{kredytDD.y}" />
-		<br />
-		OPROCENTOWANIE: <h:inputText value="#{kredytDD.r}" />
-		<br />
+	
+	
+  		KWOTA KREDYTU:
+  		
+  		<p:inputText id ="x" value="#{kredytDD.x}" required="true" requiredMessage="Brak kwoty" styleClass="p-mb-2 p-d-block" />
+  		
+  		ILOŚĆ RAT:
+  		<p:inputText id ="y" value="#{kredytDD.y}" required="true" requiredMessage="Brak ilości rat" styleClass="p-mb-2 p-d-block"/>
 		
-		<h:messages id="msg" />
-
-		<h:commandButton value="OBLICZ" action="#{kredytDD.calc()}"/>
-		<br />
-		<h:commandButton value="OBLICZ (AJAX)" action="#{kredytDD.calc_AJAX()}">
-			<f:ajax execute="@form" render="msg" />
-		</h:commandButton>
-		<br />
-		<h:commandLink value="Informacje" action="#{kredytDD.info()}" />
+		OPROCENTOWANIE:
+		<p:inputText id ="z" value="#{kredytDD.r}" required="true" requiredMessage="Brak oprocentowania"  styleClass="p-mb-2 p-d-block" />
+		
+		
+		<p:messages id="msg" />
+		
+		
+		
+	<div class="card">
+		<p:commandButton value="OBLICZ" action="#{kredytDD.calc()}" update="@form" style="width:20rem"  styleClass="p-mr-2 p-mb-2"/>
+		
+		<p:commandButton  value="OBLICZ (AJAX)" action="#{kredytDD.calc_AJAX()}" update="msg" style="width:20rem" styleClass="p-mb-2"/>
+			
+	
+	</div>
 	</h:form>
-
+</p:panel>
 </h:body>
 </html>
