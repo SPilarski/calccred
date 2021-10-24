@@ -13,9 +13,9 @@ import static java.lang.Math.*;
 @RequestScoped
 //@SessionScoped
 public class KredytDD {
-	private String x; //cala kwota
-	private String y; //ilosc rat
-	private String r; //oprocentowanie
+	private Double x; //cala kwota
+	private Integer y; //ilosc rat
+	private Double r; //oprocentowanie
 	private Integer m; //ilosc rat w okresie
 	private Double q;
 	private Double result;
@@ -23,11 +23,11 @@ public class KredytDD {
 	@Inject
 	FacesContext ctx;
 	
-	public String getR() {
+	public Double getR() {
 		return r;
 	}
 
-	public void setR(String r) {
+	public void setR(Double r) {
 		this.r = r;
 	}
 
@@ -35,19 +35,19 @@ public class KredytDD {
 
 	
 
-	public String getX() {
+	public Double getX() {
 		return x;
 	}
 
-	public void setX(String x) {
+	public void setX(Double x) {
 		this.x = x;
 	}
 
-	public String getY() {
+	public Integer getY() {
 		return y;
 	}
 
-	public void setY(String y) {
+	public void setY(Integer y) {
 		this.y = y;
 	}
 
@@ -61,9 +61,6 @@ public class KredytDD {
 
 	public boolean doTheMath() {
 		try {
-			double x = Double.parseDouble(this.x);
-			double y = Double.parseDouble(this.y);
-			double r = Double.parseDouble(this.r);
 			
 			m = 12;
 			q = 1 + (r/m);

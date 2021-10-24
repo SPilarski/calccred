@@ -21,15 +21,32 @@
 	
   		KWOTA KREDYTU:
   		
-  		<p:inputText id ="x" value="#{kredytDD.x}" required="true" requiredMessage="Brak kwoty" styleClass="p-mb-2 p-d-block" />
+  		<p:inputText id ="x" value="#{kredytDD.x}" required="true" requiredMessage="Brak kwoty" 
+  		converterMessage="Kwota musi być liczbą!"
+
+  		styleClass="p-mb-2 p-d-block" />
+  		
   		
   		ILOŚĆ RAT:
-  		<p:inputText id ="y" value="#{kredytDD.y}" required="true" requiredMessage="Brak ilości rat" styleClass="p-mb-2 p-d-block"/>
+  		<p:inputText id ="y" value="#{kredytDD.y}" required="true" requiredMessage="Brak ilości rat"
+  		converterMessage="Raty muszą być liczba!"
+  		validatorMessage="Raty od 1 do 12!"
+  		styleClass="p-mb-2 p-d-block">
+  		
+  		<f:validateLongRange minimum="1" maximum="12"/>
+  		
+  		</p:inputText>
+  		
+  		
+  		 
 		
 		OPROCENTOWANIE:
-		<p:inputText id ="z" value="#{kredytDD.r}" required="true" requiredMessage="Brak oprocentowania"  styleClass="p-mb-2 p-d-block" />
-		
-		
+		<p:inputText id ="z" value="#{kredytDD.r}" required="true" requiredMessage="Brak oprocentowania"
+		converterMessage="Oprocentowanie musi być liczbą!"
+		validatorMessage="Oprocentowanie maksymalnie 15%!"
+		  styleClass="p-mb-2 p-d-block">
+		<f:validateDoubleRange maximum="15"/>
+		</p:inputText>
 		<p:messages id="msg" />
 		
 		
