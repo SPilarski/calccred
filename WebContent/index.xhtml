@@ -8,12 +8,9 @@
 	>
 	<link rel="stylesheet" type="text/css" href="primeflex.min.css"/>
 	
-	
-<h:head>
-	<title>KALKULATOR KREDYTOWY</title>
-</h:head>
-<h:body>
-<p:panel header="KALKULATOR RATY KREDYTU">
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="pageContent">
+<p:panel>
 
 
 	<h:form id="bla">
@@ -60,5 +57,6 @@
 	</div>
 	</h:form>
 </p:panel>
-</h:body>
+</ui:define>
+</ui:composition>
 </html>
